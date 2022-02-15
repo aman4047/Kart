@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="myStyle.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
     <header class="sectionStyle">
-        <img class="swiggyLogo" src="/Images/swiggy.png" width=80px>
+        <img class="swiggyLogo" src="/images/swiggy.png" width=80px>
         <div class="header">
             <ul class="setLocation">
             <li><a href="#"><u><b>Set location</b></u></a></li>
@@ -35,7 +35,7 @@
 
     <div class="resturant sectionStyle">
         <div class="resturantLogo">
-            <img src="/Images/resturant.jpeg" width=200px height=150px>
+            <img src="/images/resturant.jpeg" width=200px height=150px>
         </div>
         <div class="resturantName">
             <h2>THE INDIAN SAMOSA</h2>
@@ -44,13 +44,13 @@
         </div>
         <div class="offer">
             <h2>OFFER</h2>
-            <p>20 % off | Use code PARTY</p>
+            <h4>20 % off | Use code PARTY</h4>
         </div>
     </div>
     <div class="foodSection sectionStyle">
         <div class="foodCategory">
-            <ul>
-                <li>Recommended</li>
+            <ul id="foodList">
+                <!---<li>Recommended</li>
                 <li>Samosas</li>
                 <li>Bun Clubs</li>
                 <li>Baked Samosas</li>
@@ -59,22 +59,22 @@
                 <li>Bombay Vada Pav</li>
                 <li>Chicken Grill Seekhs</li>
                 <li>Desserts</li>
-                <li>Teas</li>
+                <li>Teas</li>--->
             </ul>
         </div>
 
         <div class="foodMenu">
-            <div class="filter">
+            <div class="filters">
                 
-                <div class="searchFood checkbox">
+                <div class="filtersStyle">
                     <label for="searchDish"></label>
                     <input type="text" id="searchDish" name="searchDish" placeholder="search for dish"> 
                 </div>
-                <div class="searchFood checkbox">
+                <div class="filtersStyle">
                     <label for="vegOnly">Veg Only</label>
                     <input type="checkbox" id="vegOnly" name="vegOnly">
                 </div>
-                <div class="searchFood checkbox">
+                <div class="filtersStyle">
                     <label for="favourite">favourite</label>
                     <input type="checkbox" id="favourite" name="favourite">
                 </div>
@@ -82,65 +82,65 @@
 
             <div class="selectedCategory">
                 <h2>Recommended</h2>
-                <p style="font-size:14px;">58 ITEMS</p>
+                <p>58 ITEMS</p>
             </div>
         
             <div class="food">
                 <div class="foodNamePrice">
-                    <img class="vegLogo" src="Images/veg.svg.png" width=20px>
+                    <img class="vegLogo" src="images/veg.svg.png" width=20px>
                     <p>Punjabi Aloo Samosa (1 Pcs)</p>
                     <p>₹20</p>
                 </div>
                 <div class="addFood">
-                    <img class="foodImage" src="Images/samosa1.jpeg" width=90px>
+                    <img class="foodImage" src="images/samosa1.jpeg" width=90px>
                     <button class="addButton">Add</button>
                 </div>
             </div>
 
             <div class="food">
                 <div class="foodNamePrice">
-                    <img class="nonvegLogo" src="Images/nonveg.png" width=20px>
+                    <img class="nonvegLogo" src="images/nonveg.png" width=20px>
                     <p>Special  Aloo Samosa (1 Pcs)</p>
                     <p>₹55</p>
                 </div>
                 <div class="addFood">
-                    <img class="foodImage" src="Images/samosa2.webp" width=90px>
+                    <img class="foodImage" src="images/samosa2.webp" width=90px>
                     <button class="addButton">Add</button>
                 </div>
             </div>
 
             <div class="food">
                 <div class="foodNamePrice">
-                    <img class="nonvegLogo" src="Images/nonveg.png" width=20px>
+                    <img class="nonvegLogo" src="images/nonveg.png" width=20px>
                     <p>Chicken Bun Samosa (1 Pcs)</p>
                     <p>₹50</p>
                 </div>
                 <div class="addFood">
-                    <img class="foodImage" src="Images/samosa2.webp" width=90px>
+                    <img class="foodImage" src="images/samosa2.webp" width=90px>
                     <button class="addButton">Add</button>
                 </div>
             </div>
 
             <div class="food">
                 <div class="foodNamePrice">
-                    <img class="vegLogo" src="Images/veg.svg.png" width=20px>
+                    <img class="vegLogo" src="images/veg.svg.png" width=20px>
                     <p>Punjabi Aloo Samosa (1 Pcs)</p>
                     <p>₹20</p>
                 </div>
                 <div class="addFood">
-                    <img class="foodImage" src="Images/samosa1.jpeg" width=90px>
+                    <img class="foodImage" src="images/samosa1.jpeg" width=90px>
                     <button class="addButton">Add</button>
                 </div>
             </div>
 
             <div class="food">
                 <div class="foodNamePrice">
-                    <img class="nonvegLogo" src="Images/nonveg.png" width=20px>
+                    <img class="nonvegLogo" src="images/nonveg.png" width=20px>
                     <p>Chicken Bun Samosa (1 Pcs)</p>
                     <p>₹50</p>
                 </div>
                 <div class="addFood">
-                    <img class="foodImage" src="Images/samosa2.webp" width=90px>
+                    <img class="foodImage" src="images/samosa2.webp" width=90px>
                     <button class="addButton">Add</button>
                 </div>
             </div>
@@ -150,11 +150,11 @@
         
         <div class="cartStatus">
             <h2>Cart Empty</h2>
-            <img class="cartLogo" src="Images/emptyCart.png" width=200px>
+            <img class="cartLogo" src="images/emptyCart.png" width=200px>
             <p>Good food is cooking!</p>
         </div>
     </div>    
-       
+    <script src="script.js"></script>
     </body>
 
 </html>
