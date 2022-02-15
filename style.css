@@ -1,3 +1,7 @@
+html
+{
+   font-size:15px;
+}
 .sectionStyle 
 {
     padding-left:16%;
@@ -5,8 +9,8 @@
 }
 .swiggyLogo
 {
-    margin-left:-31px;
-    margin-bottom:10px;
+    margin-left:-2.06rem;
+    margin-bottom:0.6rem;
 }
 .header li 
 {   
@@ -15,18 +19,18 @@
 }
 .header
 {
-    margin-top:-70px;
-    margin-left:40px;
-    margin-bottom:60px;
+    margin-top:-4.6rem;
+    margin-left:2.6rem;
+    margin-bottom:4rem;
 }
 .setLocation 
 {
     position:relative;
-    left:-30px
+    left:-2rem
 }
 .setLocation li
 {
-    padding-left:15px;
+    padding-left:1rem;
 }
 .header li a 
 {
@@ -43,35 +47,35 @@
 }
 .menu li 
 {
-    padding-left:30px;
-    margin-top:-15px;
+    padding-left:2rem;
+    margin-top:-1rem;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .location 
 {
     background-color:rgba(243, 243, 243, 0.89);
     color:rgb(39, 35, 35);
-    height:30px;
-    font-size:9px;
-    padding-top:2px;
+    height:2rem;
+    font-size:0.6rem;
+    padding-top:0.13rem;
 }
 .resturant 
 {
     background-color:rgb(21, 21, 44);
-    height:200px;
+    height:13.3rem;
     display:flex;
     justify-content:space-between;
 }
 .resturantLogo
 {
-    margin-top:15px;
+    margin-top:1rem;
 }
 .resturantName
 {
     color:white;
-    margin-left:60px;
-    line-height:5px;
-    padding-top:30px;
+    margin-left:3rem;
+    line-height:0.33rem;
+    padding-top:2rem;
     flex:2;
 }
 .resturantName h2
@@ -85,23 +89,33 @@
 }
 .resturantName h6
 {
-    margin-top:-7px;
+    margin-top:-0.46rem;
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
 }
 .offer 
 {
-    border:1px rgb(189, 185, 185) solid;
+    border:0.1rem rgb(182, 180, 180) solid;
     color: white;
-    margin-top:18px;
-    margin-bottom:18px;
-   padding: 0 5px 0 5px;
+    margin-top:3rem;
+    margin-bottom:1.2rem;
+    margin-right:-3.5rem;
 }
 .offer h2
+{   
+    font-family:'Lato', sans-serif;
+    margin-right:10rem;
+    position: relative;
+    top:-2.2rem;
+    left:-0.7rem;
+    background-color:rgb(21, 21, 44);
+    font-weight:1;
+    /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif*/
+}
+.offer h4
 {
-    text-decoration:underline;
-    font-weight:20;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    margin-top:-2rem;
+    padding-left:1rem;
 }
 .foodSection
 {
@@ -111,8 +125,9 @@
 .foodCategory
 {  
     text-align:right;
-    border-right:1px rgb(231, 225, 225) solid;
-    padding-right:20px
+    border-right:0.1rem rgb(231, 225, 225) solid;
+    margin-top:2rem;
+    padding-right:2rem;
 }
 .foodCategory li
 {   
@@ -121,38 +136,39 @@
 }
 .foodMenu
 {   
-    padding: 0 50px;
+    padding: 0 3.6rem;
     flex:2;
 }
-.filter
+.filters
 {
     display:flex;
     justify-content:space-between;
+    position: relative;
+    top: -1rem;;
 
 }
-.checkbox
+.filtersStyle
 {
     background-color:white; 
-    border: 2px rgb(240, 234, 234) solid;
-    position: relative;
-    top:-12px
-}
-.searchFood
-{
-    padding:2px 8px;
+    border: 0.13rem rgb(240, 234, 234) solid;
+    padding: 0.2rem 0.53rem;
 }
 .selectedCategory 
 {
-    line-height:9px;
-    margin-bottom:40px ;
+    line-height:0.6rem;
+    margin-bottom:2.6rem;
+}
+.selectedCategory p
+{
+    font-size:1rem;
 }
 .food
 {
     display: flex;
     justify-content:space-between;
-    padding-bottom:20px;
-    margin-bottom:80px;
-    border-bottom:1px rgb(231, 225, 225) solid;
+    padding-bottom:1.3rem;
+    margin-bottom:5.3rem;
+    border-bottom:0.1rem rgb(231, 225, 225) solid;
 }
 .addFood
 {
@@ -162,28 +178,31 @@
 }
 .foodImage
 {   
-    border-radius:10px;
+    border-radius:0.6rem;
 }
 .addButton
 {
     color: green;
     background-color: white;
-    border:1px grey solid;
+    border:0.05rem grey solid;
     position:relative;
-    top:-10px;
-    width:60px;
+    top:-0.7rem;
+    width:4rem;
     
 }
 .cartStatus
 {   
     color:rgb(133, 128, 128);
+    padding-top:1.3rem;
+    margin-left:3rem;
+    margin-right:-1rem;
 }
 .cartStatus h2
 {
-    padding-left:20px;
+    padding-left:1.3rem;
 }
 .cartStatus p
 {
-    padding-left:16PX;
+    padding-left:1.5rem;
 }
 
