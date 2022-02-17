@@ -1,7 +1,8 @@
 "use strict"
 
-f1();
-function f1()
+let a=[1,2,3,4];
+let ans=a.reduce(function(a,b)
 {
-    console.log("hello");
-}
+   return (a+b); 
+},0);
+console.log(ans)

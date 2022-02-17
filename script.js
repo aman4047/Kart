@@ -50,25 +50,39 @@ foodItems.map(function(foodItem,index)
                               </div>
                             </div>`
 });
-var cart=[];
+let cart=[];
 function addToCart(index)
 {   
-    var flag=0;
+    let isAddedToCart=false;
     cart.forEach(function(cartItem)
     {
         if(cartItem.name===foodItems[index].name)
         {
             cartItem.qty+=1;
-            flag=1;
+            cartItem.price=cartItem.price+foodItems[index].price;
+            isAddedToCart=true;
         }
-        
+    
     });
-    if(flag===0)
+    if(isAddedToCart===false)
     {
-        var addItem={ name:foodItems[index].name, qty:1};
-        cart.push(addItem);
+        var newCartItem={ name:foodItems[index].name, qty:1,price:foodItems[index].price};
+        cart.push(newCartItem);
     }
-    console.log(cart);
+    //console.log(cart);
+
+    let subTotal=cart.reduce(function(x,y)
+    {
+        return (x+y.price);
+    },0);
+    //console.log(subTotal);
+    const cartItemsContainer=document.getElementById("cartItems");
+    cart.map(function(cartItem)
+    {
+        cartItemsContainer.innerHTML+= `<li>${cartItem.name}</li>`;
+    });
+
+
 }
 
 

@@ -4,8 +4,8 @@ html
 }
 .sectionStyle 
 {
-    padding-left:16%;
-    padding-right:16%;
+    padding-left:12%;
+    padding-right:12%;
 }
 .swiggyLogo
 {
@@ -192,17 +192,12 @@ html
 }
 .cartStatus
 {   
-    color:rgb(133, 128, 128);
     padding-top:1.3rem;
-    margin-left:3rem;
-    margin-right:-1rem;
+    border: 2px red solid;
 }
-.cartStatus h2
+.cartItem
 {
-    padding-left:1.3rem;
+    display:flex;
 }
-.cartStatus p
-{
-    padding-left:1.5rem;
-}
+
 
