@@ -190,14 +190,45 @@ html
     width:4rem;
     
 }
-.cartStatus
+.cart
 {   
     padding-top:1.3rem;
-    border: 2px red solid;
+    margin-right:-4rem;
+    margin-left:6rem;
+}
+.cart h1
+{
+   padding-left:1.6rem;
 }
 .cartItem
 {
     display:flex;
+    padding-bottom:1.3rem;
+    margin-bottom:1.3rem;
+    border-bottom:0.1rem rgb(231, 225, 225) solid;
 }
-
-
+.cartItemName
+{
+    padding: 0rem 1rem;
+}
+.cartItemPrice
+{
+    padding-right:1rem;
+}
+.subTotalSection
+{
+    display: flex;
+    justify-content: space-between;
+}
+.subTotalHeading
+{
+    padding-left:1rem;
+}
+.subTotalPrice
+{
+    padding-right:1rem;
+}
+#cartImage p
+{
+    padding-left:2rem;
+}
