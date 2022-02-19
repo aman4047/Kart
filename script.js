@@ -1,9 +1,12 @@
 "use strict"
-
-const foodCategories=["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"];
+//const foodCategories=["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"];
+const foodCategoriesObj=
+{
+    foodCategories:["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"]
+};
 function renderFoodCategories()
 {
-    foodCategories.map(function(foodCategory)
+    foodCategoriesObj.foodCategories.map(function(foodCategory)
     {   
         const list=document.createElement("li");
         list.innerHTML=foodCategory;
@@ -11,7 +14,6 @@ function renderFoodCategories()
     });
 }   
 renderFoodCategories();
-
 
 const foodItems=
 [
@@ -40,23 +42,62 @@ const foodItems=
         foodImage:"images/samosa1.jpeg",
     }
 ];
+
 function renderFoodItems()
 {
-    const foodItemsContainer=document.getElementById("foodItems");
+    /*const foodItemsContainer=document.getElementById("foodItems");
     foodItems.map(function(foodItem,index)
     {
         foodItemsContainer.innerHTML+=`<div class="food">
                                   <div class="foodNamePrice">
-                                  <img class="nonvegLogo" src=${foodItem.foodType} width=20px>
+                                  <img class="foodType" src=${foodItem.foodType}>
                                   <p>${foodItem.name}</p>
                                   <p>₹${foodItem.price}</p>
                                   </div>
                                   <div class="addFood">
-                                  <img class="foodImage" src=${foodItem.foodImage} width=90px>
+                                  <img class="foodImage" src=${foodItem.foodImage}>
                                   <button onclick="addToCart(${index})" class="addButton">Add</button>
                                   </div>
                                 </div>`
+    });*/
+    foodItems.map(function(foodItem,index)
+    {   
+    const foodDiv=document.createElement("div");
+    foodDiv.className="food";
+    
+    const foodNamePriceDiv=document.createElement("div");
+    foodNamePriceDiv.className="foodNamePrice";
+    const foodTypeImage=document.createElement("img");
+    foodTypeImage.className="foodType";
+    foodTypeImage.src=foodItem.foodType;
+    foodNamePriceDiv.appendChild(foodTypeImage);
+    const foodNamePara=document.createElement("p");
+    foodNamePara.innerText=foodItem.name;
+    foodNamePriceDiv.appendChild(foodNamePara);
+    const foodPricePara=document.createElement("p");
+    foodPricePara.innerText=foodItem.price;
+    foodNamePriceDiv.appendChild(foodPricePara);
+    foodDiv.appendChild(foodNamePriceDiv);
+
+    const addFoodDiv=document.createElement("div");
+    addFoodDiv.className="addFood";
+    const foodImagecontainer=document.createElement("img");
+    foodImagecontainer.className="foodImage";
+    foodImagecontainer.src=foodItem.foodImage;
+    addFoodDiv.appendChild(foodImagecontainer);
+    const addButtoncontainer=document.createElement("button");
+    addButtoncontainer.className="addButton";
+    addButtoncontainer.innerText="Add";
+    addButtoncontainer.onclick=function ()
+    {
+        addToCart(index);
+    }
+    addFoodDiv.appendChild(addButtoncontainer);
+    foodDiv.appendChild(addFoodDiv);
+    document.getElementById("foodItems").appendChild(foodDiv);
     });
+
+
 }
 renderFoodItems();
 
@@ -77,7 +118,6 @@ function displayCart(cartItems,subTotal)
                                         </div>
                                     </div>`
     });*/
-    console.log(cartItems)
     cartItems.map(function(Items)
     {  
     const cartItemDiv=document.createElement("div");
@@ -103,10 +143,12 @@ function displayCart(cartItems,subTotal)
     subTotalContainer.innerText=`₹${subTotal}`;
 
 }
+
 function addToCart(index)
 {   
     document.getElementById("cartImage").style.display="none";
     let isAddedToCart=false;
+    console.log(cart);
     cart.forEach(function(cartItem)
     {
         if(cartItem.name===foodItems[index].name)
