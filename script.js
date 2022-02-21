@@ -1,21 +1,45 @@
 "use strict"
 //const foodCategories=["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"];
-const foodCategoriesObj=
+function FoodCategory(foodName)
 {
-    foodCategories:["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"]
-};
+    this.foodName=foodName;
+}
+const foodCategory1=new FoodCategory("Recommended");
+const foodCategory2=new FoodCategory("Samosas");
+const foodCategory3=new FoodCategory("Bun Clubs");
+const foodCategory4=new FoodCategory("Baked Samosas");
+const foodCategory5=new FoodCategory("Bombay Pav Bhaji");
+const foodCategory6=new FoodCategory("Health Chole Chats");
+const foodCategory7=new FoodCategory("Bombay Vada Pav");
+const foodCategory8=new FoodCategory("Chicken Grill Seekhs");
+const foodCategory9=new FoodCategory("Desserts");
+const foodCategory10=new FoodCategory("Teas");
+const foodCategories=[];
+foodCategories.push(foodCategory1);
+foodCategories.push(foodCategory2);
+foodCategories.push(foodCategory3);
+foodCategories.push(foodCategory4);
+foodCategories.push(foodCategory5);
+foodCategories.push(foodCategory6);
+foodCategories.push(foodCategory7);
+foodCategories.push(foodCategory8);
+foodCategories.push(foodCategory9);
+foodCategories.push(foodCategory10);
+
 function renderFoodCategories()
 {
-    foodCategoriesObj.foodCategories.map(function(foodCategory)
+    foodCategories.map(function(foodCategory)
     {   
         const list=document.createElement("li");
-        list.innerHTML=foodCategory;
+        list.innerHTML=foodCategory.foodName;
         document.getElementById("foodList").appendChild(list);
     });
 }   
 renderFoodCategories();
 
-const foodItems=
+
+
+/*const foodItems=
 [
     {
         foodType:"images/veg.svg.png",
@@ -42,64 +66,67 @@ const foodItems=
         foodImage:"images/samosa1.jpeg",
     }
 ];
+*/
+
+function Menu(foodType,name,price,foodImage)
+{
+    this.foodType=foodType;
+    this.name=name;
+    this.price=price;
+    this.foodImage=foodImage;
+}
+const foodItem1=new Menu("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg");
+const foodItem2=new Menu("images/nonveg.png","Special Aloo Samosa",55,"images/samosa2.webp");
+const foodItem3=new Menu("images/nonveg.png","Chicken Bun Samosa",50,"images/samosa2.webp");
+const foodItem4=new Menu("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg");
+const foodItems=[];
+foodItems.push(foodItem1);
+foodItems.push(foodItem2);
+foodItems.push(foodItem3);
+foodItems.push(foodItem4);
 
 function renderFoodItems()
 {
-    /*const foodItemsContainer=document.getElementById("foodItems");
-    foodItems.map(function(foodItem,index)
-    {
-        foodItemsContainer.innerHTML+=`<div class="food">
-                                  <div class="foodNamePrice">
-                                  <img class="foodType" src=${foodItem.foodType}>
-                                  <p>${foodItem.name}</p>
-                                  <p>₹${foodItem.price}</p>
-                                  </div>
-                                  <div class="addFood">
-                                  <img class="foodImage" src=${foodItem.foodImage}>
-                                  <button onclick="addToCart(${index})" class="addButton">Add</button>
-                                  </div>
-                                </div>`
-    });*/
+    
     foodItems.map(function(foodItem,index)
     {   
-    const foodDiv=document.createElement("div");
-    foodDiv.className="food";
+        const foodDiv=document.createElement("div");
+        foodDiv.className="food";
     
-    const foodNamePriceDiv=document.createElement("div");
-    foodNamePriceDiv.className="foodNamePrice";
-    const foodTypeImage=document.createElement("img");
-    foodTypeImage.className="foodType";
-    foodTypeImage.src=foodItem.foodType;
-    foodNamePriceDiv.appendChild(foodTypeImage);
-    const foodNamePara=document.createElement("p");
-    foodNamePara.innerText=foodItem.name;
-    foodNamePriceDiv.appendChild(foodNamePara);
-    const foodPricePara=document.createElement("p");
-    foodPricePara.innerText=foodItem.price;
-    foodNamePriceDiv.appendChild(foodPricePara);
-    foodDiv.appendChild(foodNamePriceDiv);
+            const foodNamePriceDiv=document.createElement("div");
+            foodNamePriceDiv.className="foodNamePrice";
+            const foodTypeImage=document.createElement("img");
+            foodTypeImage.className="foodType";
+            foodTypeImage.src=foodItem.foodType;
+            foodNamePriceDiv.appendChild(foodTypeImage);
+            const foodNamePara=document.createElement("p");
+            foodNamePara.innerText=foodItem.name;
+            foodNamePriceDiv.appendChild(foodNamePara);
+            const foodPricePara=document.createElement("p");
+            foodPricePara.innerText=foodItem.price;
+            foodNamePriceDiv.appendChild(foodPricePara);
+            foodDiv.appendChild(foodNamePriceDiv);
 
-    const addFoodDiv=document.createElement("div");
-    addFoodDiv.className="addFood";
-    const foodImagecontainer=document.createElement("img");
-    foodImagecontainer.className="foodImage";
-    foodImagecontainer.src=foodItem.foodImage;
-    addFoodDiv.appendChild(foodImagecontainer);
-    const addButtoncontainer=document.createElement("button");
-    addButtoncontainer.className="addButton";
-    addButtoncontainer.innerText="Add";
-    addButtoncontainer.onclick=function ()
-    {
-        addToCart(index);
-    }
-    addFoodDiv.appendChild(addButtoncontainer);
-    foodDiv.appendChild(addFoodDiv);
-    document.getElementById("foodItems").appendChild(foodDiv);
+            const addFoodDiv=document.createElement("div");
+            addFoodDiv.className="addFood";
+            const foodImagecontainer=document.createElement("img");
+            foodImagecontainer.className="foodImage";
+            foodImagecontainer.src=foodItem.foodImage;
+            addFoodDiv.appendChild(foodImagecontainer);
+            const addButtoncontainer=document.createElement("button");
+            addButtoncontainer.className="addButton";
+            addButtoncontainer.innerText="Add";
+            addButtoncontainer.onclick=function ()
+                {
+                    addToCart(index);
+                }
+            addFoodDiv.appendChild(addButtoncontainer);
+            foodDiv.appendChild(addFoodDiv);
+        document.getElementById("foodItems").appendChild(foodDiv);
     });
-
-
 }
 renderFoodItems();
+
 
 
 let cart=[];
@@ -143,12 +170,16 @@ function displayCart(cartItems,subTotal)
     subTotalContainer.innerText=`₹${subTotal}`;
 
 }
-
+function AddNewCartItem(name,qty,price)
+{
+    this.name=name;
+    this.qty=qty;
+    this.price=price;
+}
 function addToCart(index)
 {   
     document.getElementById("cartImage").style.display="none";
     let isAddedToCart=false;
-    console.log(cart);
     cart.forEach(function(cartItem)
     {
         if(cartItem.name===foodItems[index].name)
@@ -160,7 +191,8 @@ function addToCart(index)
     });
     if(isAddedToCart===false)
     {
-        var newCartItem={ name:foodItems[index].name, qty:1,price:foodItems[index].price};
+       // var newCartItem={ name:foodItems[index].name, qty:1,price:foodItems[index].price};
+        let newCartItem=new AddNewCartItem(foodItems[index].name,1,foodItems[index].price);
         cart.push(newCartItem);
     }
     let subTotal=cart.reduce(function(currentSubTotal,cartItem)
