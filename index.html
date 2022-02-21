@@ -84,76 +84,98 @@
                 <h2>Recommended</h2>
                 <p>58 ITEMS</p>
             </div>
-        
-            <div class="food">
-                <div class="foodNamePrice">
-                    <img class="vegLogo" src="images/veg.svg.png" width=20px>
-                    <p>Punjabi Aloo Samosa (1 Pcs)</p>
-                    <p>₹20</p>
+            <div id="foodItems">
+                <!--<div class="food">
+                    <div class="foodNamePrice">
+                        <img class="vegLogo" src="images/veg.svg.png" width=20px>
+                        <p>Punjabi Aloo Samosa (1 Pcs)</p>
+                        <p>₹20</p>
+                    </div>
+                    <div class="addFood">
+                        <img class="foodImage" src="images/samosa1.jpeg" width=90px>
+                        <button onclick="addToCart(item1)" class="addButton">Add</button>
+                    </div>
                 </div>
-                <div class="addFood">
-                    <img class="foodImage" src="images/samosa1.jpeg" width=90px>
-                    <button class="addButton">Add</button>
-                </div>
-            </div>
 
-            <div class="food">
-                <div class="foodNamePrice">
-                    <img class="nonvegLogo" src="images/nonveg.png" width=20px>
-                    <p>Special  Aloo Samosa (1 Pcs)</p>
-                    <p>₹55</p>
+                <div class="food">
+                    <div class="foodNamePrice">
+                        <img class="nonvegLogo" src="images/nonveg.png" width=20px>
+                        <p>Special  Aloo Samosa (1 Pcs)</p>
+                        <p>₹55</p>
+                    </div>
+                    <div class="addFood">
+                        <img class="foodImage" src="images/samosa2.webp" width=90px>
+                        <button onclick="addToCart(item2)" class="addButton">Add</button>
+                    </div>
                 </div>
-                <div class="addFood">
-                    <img class="foodImage" src="images/samosa2.webp" width=90px>
-                    <button class="addButton">Add</button>
-                </div>
-            </div>
 
-            <div class="food">
-                <div class="foodNamePrice">
-                    <img class="nonvegLogo" src="images/nonveg.png" width=20px>
-                    <p>Chicken Bun Samosa (1 Pcs)</p>
-                    <p>₹50</p>
+                <div class="food">
+                    <div class="foodNamePrice" id="food1">
+                        <img class="nonvegLogo" src="images/nonveg.png" width=20px>
+                        <p>Chicken Bun Samosa (1 Pcs)</p>
+                        <p>₹50</p>
+                        </div>
+                    <div class="addFood">
+                        <img class="foodImage" src="images/samosa2.webp" width=90px>
+                        <button class="addButton">Add</button>
+                    </div>
                 </div>
-                <div class="addFood">
-                    <img class="foodImage" src="images/samosa2.webp" width=90px>
-                    <button class="addButton">Add</button>
-                </div>
-            </div>
 
-            <div class="food">
-                <div class="foodNamePrice">
-                    <img class="vegLogo" src="images/veg.svg.png" width=20px>
-                    <p>Punjabi Aloo Samosa (1 Pcs)</p>
-                    <p>₹20</p>
+                <div class="food">
+                    <div class="foodNamePrice">
+                        <img class="vegLogo" src="images/veg.svg.png" width=20px>
+                        <p>Punjabi Aloo Samosa (1 Pcs)</p>
+                        <p>₹20</p>
+                    </div>
+                    <div class="addFood">
+                        <img class="foodImage" src="images/samosa1.jpeg" width=90px>
+                        <button class="addButton">Add</button>
+                    </div>
                 </div>
-                <div class="addFood">
-                    <img class="foodImage" src="images/samosa1.jpeg" width=90px>
-                    <button class="addButton">Add</button>
-                </div>
-            </div>
 
-            <div class="food">
-                <div class="foodNamePrice">
-                    <img class="nonvegLogo" src="images/nonveg.png" width=20px>
-                    <p>Chicken Bun Samosa (1 Pcs)</p>
-                    <p>₹50</p>
-                </div>
-                <div class="addFood">
-                    <img class="foodImage" src="images/samosa2.webp" width=90px>
-                    <button class="addButton">Add</button>
-                </div>
+                <div class="food">
+                    <div class="foodNamePrice">
+                        <img class="nonvegLogo" src="images/nonveg.png" width=20px>
+                        <p>Chicken Bun Samosa (1 Pcs)</p>
+                        <p>₹50</p>
+                    </div>
+                    <div class="addFood">
+                        <img class="foodImage" src="images/samosa2.webp" width=90px>
+                        <button class="addButton">Add</button>
+                    </div>
+                </div>--->
             </div>
 
         </div>
 
         
-        <div class="cartStatus">
-            <h2>Cart Empty</h2>
-            <img class="cartLogo" src="images/emptyCart.png" width=200px>
-            <p>Good food is cooking!</p>
+        <div class="cart">
+            <h1>Cart</h1>
+            <div id="cartItems">
+         <!---<div class="cartItem">
+                    <div class="cartItemName">
+                        <p>Punjabi Aloo Samosa</p>
+                    </div>
+                    <div class="cartItemPrice">
+                        <p>₹20</p> 
+                    </div>
+                </div>--->
+            </div>    
+            <div class="subTotalSection">
+                <div class="subTotalHeading">
+                    <h3>Subtotal</h3>
+                </div>
+                <div class="subTotalPrice">
+                    <p id="subTotal">₹0</p>
+                </div>
+            </div>
+            <div id="cartImage">
+                <img src="images/emptyCart.png" width=200px>
+                <p>Good food is cooking!</p>
+            </div>
+            
         </div>
-    </div>    
+    </div>  
     <script src="script.js"></script>
     </body>
 
