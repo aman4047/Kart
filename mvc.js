@@ -1,35 +1,10 @@
-const model=
+function MODEL()
 {
-   foodCategories:["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"],
-   foodItems:
-   [
-        {
-        foodType:"images/veg.svg.png",
-        name:"Punjabi Aloo Samosa",
-        price:20,
-        foodImage:"images/samosa1.jpeg",
-        },
-        {
-        foodType:"images/nonveg.png",
-        name:"Special Aloo Samosa",
-        price:55,
-        foodImage:"images/samosa2.webp",
-        },
-        {
-        foodType:"images/nonveg.png",
-        name:"Chicken Bun Samosa",
-        price:50,
-        foodImage:"images/samosa2.webp",
-        },
-        {
-        foodType:"images/veg.svg.png",
-        name:"Punjabi Aloo Samosa",
-        price:20,
-        foodImage:"images/samosa1.jpeg",
-        }
-    ],
-    cart:[]
-};
+    this.foodCategories=[],
+    this.foodItems=[],
+    this.cart=[]       
+}
+const model=new MODEL();
 
 const foodCategoriesView=
 {
@@ -131,9 +106,42 @@ const cartView=
 const controller=
 {   
     initialise:function()
-    {
+    {   
+        this.setFoodCategories();
+        this.setFoodItems();
         foodCategoriesView.initialise();
         foodMenuView.initialise();
+    },
+    setFoodCategories:function()
+    {
+        model.foodCategories.push("Recommended");
+        model.foodCategories.push("Samosas");
+        model.foodCategories.push("Bun Clubs");
+        model.foodCategories.push("Baked Samosas");
+        model.foodCategories.push("Bombay Pav Bhaji");
+        model.foodCategories.push("Health Chole Chats");
+        model.foodCategories.push("Bombay Vada Pav")
+        model.foodCategories.push("Chicken Grill Seekhs")
+        model.foodCategories.push("Desserts");
+        model.foodCategories.push("Teas");
+    },
+    setFoodItems:function()
+    {   
+        function Menu(foodType,name,price,foodImage)
+        {
+            this.foodType=foodType;
+            this.name=name;
+            this.price=price;
+            this.foodImage=foodImage;
+        }
+        const foodItem1=new Menu("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg");
+        const foodItem2=new Menu("images/nonveg.png","Special Aloo Samosa",55,"images/samosa2.webp");
+        const foodItem3=new Menu("images/nonveg.png","Chicken Bun Samosa",50,"images/samosa2.webp");
+        const foodItem4=new Menu("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg");
+        model.foodItems.push(foodItem1);
+        model.foodItems.push(foodItem2);
+        model.foodItems.push(foodItem3);
+        model.foodItems.push(foodItem4);
     },
     getFoodCategories:function()
     {
@@ -154,11 +162,17 @@ const controller=
             cartItem.qty+=1;
             isAddedToCart=true;
             }
-     
         });
         if(isAddedToCart===false)
-        {
-            var newCartItem={ name:model.foodItems[index].name, qty:1,price:model.foodItems[index].price};
+        {    
+
+            function AddNewCartItem(name,qty,price)
+            {
+                this.name=name;
+                this.qty=qty;
+                this.price=price;
+            }
+            let newCartItem=new AddNewCartItem(model.foodItems[index].name,1,model.foodItems[index].price);
             model.cart.push(newCartItem);
         }
         let subTotal=model.cart.reduce(function(currentSubTotal,cartItem)
@@ -172,76 +186,3 @@ controller.initialise();
 
 
 
-/*let cart=[];
-function displayCart(cartItems,subTotal)
-{
-    const cartItemContainer=document.getElementById("cartItems");
-    cartItemContainer.innerHTML="";
-    cartItems.map(function(Items)
-    {
-        cartItemContainer.innerHTML+=`<div class="cartItem">
-                                        <div class="cartItemName">
-                                            <p>${Items.name}</p>
-                                        </div>
-                                        <div class="cartItemPrice">
-                                            <p>${Items.qty} x ${Items.price} = ₹${Items.price*Items.qty}</p> 
-                                        </div>
-                                    </div>`
-    });
-    cartItems.map(function(Items)
-    {  
-    const cartItemDiv=document.createElement("div");
-    cartItemDiv.className="cartItem";
-    const cartItemNameDiv=document.createElement("div");
-    cartItemNameDiv.className="cartItemName";
-    const itemNamePara=document.createElement("p");
-    itemNamePara.innerText=`${Items.name}`;
-    cartItemNameDiv.appendChild(itemNamePara);
-    cartItemDiv.appendChild(cartItemNameDiv);
-
-    const cartItemPriceDiv=document.createElement("div");
-    cartItemPriceDiv.className="cartItemPrice";
-    const itemPricePara=document.createElement("p");
-    itemPricePara.innerText=`${Items.qty} x ${Items.price} = ₹${Items.price*Items.qty}`;
-    cartItemPriceDiv.appendChild(itemPricePara);
-    cartItemDiv.appendChild(cartItemPriceDiv);
-    document.getElementById("cartItems").appendChild(cartItemDiv);
-    });
-    
-
-    const subTotalContainer=document.getElementById("subTotal");
-    subTotalContainer.innerText=`₹${subTotal}`;
-
-}
-function AddNewCartItem(name,qty,price)
-{
-    this.name=name;
-    this.qty=qty;
-    this.price=price;
-}
-function addToCart(index)
-{   
-    document.getElementById("cartImage").style.display="none";
-    let isAddedToCart=false;
-    cart.forEach(function(cartItem)
-    {
-        if(cartItem.name===foodItems[index].name)
-        {
-            cartItem.qty+=1;
-            isAddedToCart=true;
-        }
-    
-    });
-    if(isAddedToCart===false)
-    {
-       // var newCartItem={ name:foodItems[index].name, qty:1,price:foodItems[index].price};
-        let newCartItem=new AddNewCartItem(foodItems[index].name,1,foodItems[index].price);
-        cart.push(newCartItem);
-    }
-    let subTotal=cart.reduce(function(currentSubTotal,cartItem)
-    {
-        return (currentSubTotal+(cartItem.qty*cartItem.price));
-    },0);
-    displayCart(cart,subTotal);
-    
-}*/
