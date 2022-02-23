@@ -28,25 +28,18 @@ const model=
         foodImage:"images/samosa1.jpeg",
         }
     ],
-    cart:[],
-    AddNewCartItem(name,qty,price)
-    {
-    this.name=name;
-    this.qty=qty;
-    this.price=price;
-    }
-
+    cart:[]
 };
 
 const foodCategoriesView=
 {
-    initialise()
+    initialise:function()
     {
         this.renderFoodCategories();
     },
-    renderFoodCategories()
+    renderFoodCategories:function()
     {   
-        const foodCategories=controller.getfoodCategories();
+        const foodCategories=controller.getFoodCategories();
         foodCategories.map(function(foodCategory)
         {   
             const list=document.createElement("li");
@@ -58,13 +51,13 @@ const foodCategoriesView=
 
 const foodMenuView=
 {
-    initialise()
+    initialise:function()
     {
         this.renderFoodMenu();
     },
-    renderFoodMenu()
+    renderFoodMenu:function()
     {   
-        const foodItems=controller.getfoodItems();
+        const foodItems=controller.getFoodItems();
         foodItems.map(function(foodItem,index)
         {   
             const foodDiv=document.createElement("div");
@@ -95,7 +88,7 @@ const foodMenuView=
             addButtoncontainer.innerText="Add";
             addButtoncontainer.onclick=function ()
             {
-                addToCart(index);
+                controller.addToCart(index);
             }
             addFoodDiv.appendChild(addButtoncontainer);
             foodDiv.appendChild(addFoodDiv);
@@ -106,29 +99,26 @@ const foodMenuView=
 };
 const cartView=
 {
-    initialise()
-    {
-        this.renderCart();
-    },
-    renderCart(cartItems,subTotal)
-    {
+    
+    renderCart:function(cart,subTotal)
+    {   
         const cartItemContainer=document.getElementById("cartItems");
         cartItemContainer.innerHTML="";
-        cartItems.map(function(Items)
+        cart.map(function(Item)
         {  
             const cartItemDiv=document.createElement("div");
             cartItemDiv.className="cartItem";
             const cartItemNameDiv=document.createElement("div");
             cartItemNameDiv.className="cartItemName";
             const itemNamePara=document.createElement("p");
-            itemNamePara.innerText=`${Items.name}`;
+            itemNamePara.innerText=`${Item.name}`;
             cartItemNameDiv.appendChild(itemNamePara);
             cartItemDiv.appendChild(cartItemNameDiv);
 
             const cartItemPriceDiv=document.createElement("div");
             cartItemPriceDiv.className="cartItemPrice";
             const itemPricePara=document.createElement("p");
-            itemPricePara.innerText=`${Items.qty} x ${Items.price} = ₹${Items.price*Items.qty}`;
+            itemPricePara.innerText=`${Item.qty} x ${Item.price} = ₹${Item.price*Item.qty}`;
             cartItemPriceDiv.appendChild(itemPricePara);
             cartItemDiv.appendChild(cartItemPriceDiv);
             document.getElementById("cartItems").appendChild(cartItemDiv);
@@ -139,19 +129,119 @@ const cartView=
 }
 
 const controller=
-{
-    initialise()
+{   
+    initialise:function()
     {
         foodCategoriesView.initialise();
         foodMenuView.initialise();
     },
-    getfoodCategories()
+    getFoodCategories:function()
     {
         return model.foodCategories;
     },
-    getfoodItems()
+    getFoodItems:function()
     {
         return model.foodItems;
+    },
+    addToCart:function(index)
+    {   
+        document.getElementById("cartImage").style.display="none";
+        let isAddedToCart=false;
+        model.cart.forEach(function(cartItem)
+        {
+            if(cartItem.name===model.foodItems[index].name)
+            {
+            cartItem.qty+=1;
+            isAddedToCart=true;
+            }
+     
+        });
+        if(isAddedToCart===false)
+        {
+            var newCartItem={ name:model.foodItems[index].name, qty:1,price:model.foodItems[index].price};
+            model.cart.push(newCartItem);
+        }
+        let subTotal=model.cart.reduce(function(currentSubTotal,cartItem)
+        {
+            return (currentSubTotal+(cartItem.qty*cartItem.price));
+        },0);
+        cartView.renderCart(model.cart,subTotal);
     }
 };
 controller.initialise();
+
+
+
+/*let cart=[];
+function displayCart(cartItems,subTotal)
+{
+    const cartItemContainer=document.getElementById("cartItems");
+    cartItemContainer.innerHTML="";
+    cartItems.map(function(Items)
+    {
+        cartItemContainer.innerHTML+=`<div class="cartItem">
+                                        <div class="cartItemName">
+                                            <p>${Items.name}</p>
+                                        </div>
+                                        <div class="cartItemPrice">
+                                            <p>${Items.qty} x ${Items.price} = ₹${Items.price*Items.qty}</p> 
+                                        </div>
+                                    </div>`
+    });
+    cartItems.map(function(Items)
+    {  
+    const cartItemDiv=document.createElement("div");
+    cartItemDiv.className="cartItem";
+    const cartItemNameDiv=document.createElement("div");
+    cartItemNameDiv.className="cartItemName";
+    const itemNamePara=document.createElement("p");
+    itemNamePara.innerText=`${Items.name}`;
+    cartItemNameDiv.appendChild(itemNamePara);
+    cartItemDiv.appendChild(cartItemNameDiv);
+
+    const cartItemPriceDiv=document.createElement("div");
+    cartItemPriceDiv.className="cartItemPrice";
+    const itemPricePara=document.createElement("p");
+    itemPricePara.innerText=`${Items.qty} x ${Items.price} = ₹${Items.price*Items.qty}`;
+    cartItemPriceDiv.appendChild(itemPricePara);
+    cartItemDiv.appendChild(cartItemPriceDiv);
+    document.getElementById("cartItems").appendChild(cartItemDiv);
+    });
+    
+
+    const subTotalContainer=document.getElementById("subTotal");
+    subTotalContainer.innerText=`₹${subTotal}`;
+
+}
+function AddNewCartItem(name,qty,price)
+{
+    this.name=name;
+    this.qty=qty;
+    this.price=price;
+}
+function addToCart(index)
+{   
+    document.getElementById("cartImage").style.display="none";
+    let isAddedToCart=false;
+    cart.forEach(function(cartItem)
+    {
+        if(cartItem.name===foodItems[index].name)
+        {
+            cartItem.qty+=1;
+            isAddedToCart=true;
+        }
+    
+    });
+    if(isAddedToCart===false)
+    {
+       // var newCartItem={ name:foodItems[index].name, qty:1,price:foodItems[index].price};
+        let newCartItem=new AddNewCartItem(foodItems[index].name,1,foodItems[index].price);
+        cart.push(newCartItem);
+    }
+    let subTotal=cart.reduce(function(currentSubTotal,cartItem)
+    {
+        return (currentSubTotal+(cartItem.qty*cartItem.price));
+    },0);
+    displayCart(cart,subTotal);
+    
+}*/
