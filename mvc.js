@@ -35,29 +35,29 @@ const foodMenuView=
         const foodItems=controller.getFoodItems();
         foodItems.map(function(foodItem,index)
         {   
-            const foodDiv=document.createElement("div");
-            foodDiv.className="food";
+            const foodContainer=document.createElement("div");
+            foodContainer.className="food";
     
-            const foodNamePriceDiv=document.createElement("div");
-            foodNamePriceDiv.className="foodNamePrice";
+            const foodNamePriceContainer=document.createElement("div");
+            foodNamePriceContainer.className="foodNamePrice";
             const foodTypeImage=document.createElement("img");
             foodTypeImage.className="foodType";
             foodTypeImage.src=foodItem.foodType;
-            foodNamePriceDiv.appendChild(foodTypeImage);
+            foodNamePriceContainer.appendChild(foodTypeImage);
             const foodNamePara=document.createElement("p");
             foodNamePara.innerText=foodItem.name;
-            foodNamePriceDiv.appendChild(foodNamePara);
+            foodNamePriceContainer.appendChild(foodNamePara);
             const foodPricePara=document.createElement("p");
             foodPricePara.innerText=foodItem.price;
-            foodNamePriceDiv.appendChild(foodPricePara);
-            foodDiv.appendChild(foodNamePriceDiv);
+            foodNamePriceContainer.appendChild(foodPricePara);
+            foodContainer.appendChild(foodNamePriceContainer);
 
-            const addFoodDiv=document.createElement("div");
-            addFoodDiv.className="addFood";
+            const addFoodContainer=document.createElement("div");
+            addFoodContainer.className="addFood";
             const foodImagecontainer=document.createElement("img");
             foodImagecontainer.className="foodImage";
             foodImagecontainer.src=foodItem.foodImage;
-            addFoodDiv.appendChild(foodImagecontainer);
+            addFoodContainer.appendChild(foodImagecontainer);
             const addButtoncontainer=document.createElement("button");
             addButtoncontainer.className="addButton";
             addButtoncontainer.innerText="Add";
@@ -65,38 +65,38 @@ const foodMenuView=
             {
                 controller.addToCart(index);
             }
-            addFoodDiv.appendChild(addButtoncontainer);
-            foodDiv.appendChild(addFoodDiv);
-            document.getElementById("foodItems").appendChild(foodDiv);
+            addFoodContainer.appendChild(addButtoncontainer);
+            foodContainer.appendChild(addFoodContainer);
+            document.getElementById("foodItems").appendChild(foodContainer);
         });
     }
 
 };
+
 const cartView=
 {
-    
     renderCart:function(cart,subTotal)
     {   
-        const cartItemContainer=document.getElementById("cartItems");
-        cartItemContainer.innerHTML="";
+        const cartItemsContainer=document.getElementById("cartItems");
+        cartItemsContainer.innerHTML="";
         cart.map(function(Item)
         {  
-            const cartItemDiv=document.createElement("div");
-            cartItemDiv.className="cartItem";
-            const cartItemNameDiv=document.createElement("div");
-            cartItemNameDiv.className="cartItemName";
+            const cartItemContainer=document.createElement("div");
+            cartItemContainer.className="cartItem";
+            const cartItemNameContainer=document.createElement("div");
+            cartItemNameContainer.className="cartItemName";
             const itemNamePara=document.createElement("p");
             itemNamePara.innerText=`${Item.name}`;
-            cartItemNameDiv.appendChild(itemNamePara);
-            cartItemDiv.appendChild(cartItemNameDiv);
+            cartItemNameContainer.appendChild(itemNamePara);
+            cartItemContainer.appendChild(cartItemNameContainer);
 
-            const cartItemPriceDiv=document.createElement("div");
-            cartItemPriceDiv.className="cartItemPrice";
+            const cartItemPriceContainer=document.createElement("div");
+            cartItemPriceContainer.className="cartItemPrice";
             const itemPricePara=document.createElement("p");
             itemPricePara.innerText=`${Item.qty} x ${Item.price} = ₹${Item.price*Item.qty}`;
-            cartItemPriceDiv.appendChild(itemPricePara);
-            cartItemDiv.appendChild(cartItemPriceDiv);
-            document.getElementById("cartItems").appendChild(cartItemDiv);
+            cartItemPriceContainer.appendChild(itemPricePara);
+            cartItemContainer.appendChild(cartItemPriceContainer);
+            cartItemsContainer.appendChild(cartItemContainer);
         });
         const subTotalContainer=document.getElementById("subTotal");
         subTotalContainer.innerText=`₹${subTotal}`;
