@@ -7,32 +7,18 @@ html
     padding-left:12%;
     padding-right:12%;
 }
-.swiggyLogo
-{
-    margin-left:-2.06rem;
-    margin-bottom:0.6rem;
-}
-.header li 
-{   
-    float:left;
-    list-style:none;
-}
 .header
 {
-    margin-top:-4.6rem;
-    margin-left:2.6rem;
-    margin-bottom:4rem;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    padding-left: 10%;
 }
-.setLocation 
+.swiggyLogo
 {
-    position:relative;
-    left:-2rem
+    width:5.3rem
 }
-.setLocation li
-{
-    padding-left:1rem;
-}
-.header li a 
+.header li a
 {
     text-decoration:none;
     color:black;
@@ -41,15 +27,23 @@ html
 {
     color:rgb(221, 126, 36);
 }
-.menu
-{   
-    float: right
-}
-.menu li 
+.setLocation
 {
-    padding-left:2rem;
-    margin-top:-1rem;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    flex:2;
+    position: relative;
+    left: -2rem;
+}
+.setLocation li
+{
+    display:inline-block;
+    list-style:none;
+}
+.menu li
+{
+    display:inline-block;
+    list-style:none;
+    margin: 0 1.4rem;
+    font-family: ProximaNova,arial,Helvetica Neue,sans-serif;
 }
 .location 
 {
@@ -81,27 +75,29 @@ html
 .resturantName h2
 {   
     font-family:'Lato', sans-serif;
+  
 }
 .resturantName h5
 {
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
+    margin-bottom: 1rem;
 }
 .resturantName h6
-{
-    margin-top:-0.46rem;
+{  
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
+    margin-block-start:0;
+   
 }
-.offer 
+.offerContainer 
 {
     border:0.1rem rgb(182, 180, 180) solid;
     color: white;
     margin-top:3rem;
     margin-bottom:1.2rem;
-    margin-right:-3.5rem;
 }
-.offer h2
+.offerContainer h2
 {   
     font-family:'Lato', sans-serif;
     margin-right:10rem;
@@ -110,11 +106,9 @@ html
     left:-0.7rem;
     background-color:rgb(21, 21, 44);
     font-weight:1;
-    /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif*/
 }
-.offer h4
+.offerContainer h4
 {
-    margin-top:-2rem;
     padding-left:1rem;
 }
 .foodSection
@@ -132,14 +126,14 @@ html
 .foodCategory li
 {   
     list-style:none;
-    height:30px;
+    height:2rem;
 }
 .foodMenu
 {   
     padding: 0 3.6rem;
     flex:2;
 }
-.filters
+.filterContainer
 {
     display:flex;
     justify-content:space-between;
@@ -172,7 +166,7 @@ html
 }
 .foodType
 {
-    width: 20px;
+    width:1.3rem;
 }
 .addFood
 {
@@ -183,7 +177,7 @@ html
 .foodImage
 {   
     border-radius:0.6rem;
-    width:90px;
+    width:6rem;
 }
 .addButton
 {
@@ -198,12 +192,11 @@ html
 .cart
 {   
     padding-top:1.3rem;
-    margin-right:-4rem;
     margin-left:6rem;
 }
-.cart h1
+.cartHeading
 {
-   padding-left:1.6rem;
+   padding-left:1rem;
 }
 .cartItem
 {
@@ -216,9 +209,14 @@ html
 {
     padding: 0rem 1rem;
 }
+.cartButton
+{
+    padding-top:1rem;
+}
 .cartItemPrice
 {
     padding-right:1rem;
+    padding-left: 1rem;
 }
 .subTotalSection
 {
@@ -233,7 +231,15 @@ html
 {
     padding-right:1rem;
 }
-#cartImage p
+.defaultCartImageContainer
 {
-    padding-left:2rem;
+    padding-right:2rem;
+}
+.defaultCartImage
+{
+    width:200px
+}
+.defaultCartImageContainer p
+{
+    padding-left:1rem;
 }

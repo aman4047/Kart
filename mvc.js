@@ -1,188 +1,278 @@
-function MODEL()
-{
-    this.foodCategories=[],
-    this.foodItems=[],
-    this.cart=[]       
+function Model()
+{   
+    this.foodCategories=["Recommended","Samosas","Bun Clubs","Baked Samosas","Bombay Pav Bhaji","Health Chole Chats","Bombay Vada Pav","Chicken Grill Seekhs","Desserts","Teas"];
+    this.foodItems=[];
+    this.cart=[];   
+    this.appendFoodItems=function(foodItem)
+    {
+        this.foodItems.push(foodItem);
+    };
+    this.appendCartFromLocalStorage=function()
+    {  
+        this.cart=window.localStorage.getItem("cart")===null? []:JSON.parse(window.localStorage.getItem("cart"));
+        const subTotal=window.localStorage.getItem("subTotal")===null?0:Number(window.localStorage.getItem("subTotal"));
+        if(this.cart.length>0)
+        {
+            document.getElementById("cartImage").style.display="none";
+        }
+        controller.displayCartItems(this.cart,subTotal);
+    }
+    this.addFoodItemsToCart=function(index)
+    {   
+        document.getElementById("cartImage").style.display="none";
+        let isFoodItemPresentInCart=false;
+        model.cart.forEach(function(cartItem)
+        {
+            if(cartItem.name===model.foodItems[index].name)
+            {
+                cartItem.qty+=1;
+                isFoodItemPresentInCart=true;
+            }
+        });
+        if(isFoodItemPresentInCart===false)
+        {    
+            function CartItem(name,qty,price,index)
+            {
+                this.name=name;
+                this.qty=qty;
+                this.price=price;
+                this.index=index;
+            }
+            const newCartItem=new CartItem(model.foodItems[index].name,1,model.foodItems[index].price,index);
+            model.cart.push(newCartItem);
+        }
+        const subTotal=model.cart.reduce(function(currentSubTotal,cartItem)
+        {
+            return (currentSubTotal+(cartItem.qty*cartItem.price));
+        },0);
+        window.localStorage.setItem('cart', JSON.stringify(model.cart));
+        window.localStorage.setItem('subTotal', JSON.stringify(subTotal));
+        controller.displayCartItems(model.cart,subTotal);
+    }
+    this.removeFoodItemsFromCart=function(index)
+    {   
+        model.cart.forEach(function(cartItem)
+        {
+            if(cartItem.name===model.foodItems[index].name)
+            {  
+                if(cartItem.qty>0)
+                {
+                cartItem.qty-=1;
+                } 
+            }
+        });
+        model.cart=model.cart.filter(function(cartItem)
+        {
+            return cartItem.qty>0;
+        });
+        if(model.cart.length===0)
+        {
+            document.getElementById("cartImage").style.display="block";
+        }
+        const subTotal=model.cart.reduce(function(currentSubTotal,cartItem)
+        {
+            return (currentSubTotal+(cartItem.qty*cartItem.price));
+        },0);
+        window.localStorage.setItem('cart', JSON.stringify(model.cart));
+        window.localStorage.setItem('subTotal', JSON.stringify(subTotal));
+        controller.displayCartItems(model.cart,subTotal);
+    }
 }
-const model=new MODEL();
+const model=new Model();
 
-const foodCategoriesView=
+function MenuItem(foodType,name,price,foodImage)
 {
-    initialise:function()
+    this.foodType=foodType;
+    this.name=name;
+    this.price=price;
+    this.foodImage=foodImage;
+}
+model.appendFoodItems(new MenuItem("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg"));   
+model.appendFoodItems(new MenuItem("images/nonveg.png","Special Aloo Samosa",55,"images/samosa2.webp"));  
+model.appendFoodItems(new MenuItem("images/nonveg.png","Chicken Bun Samosa",50,"images/samosa2.webp"));  
+model.appendFoodItems(new MenuItem("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg"));   
+
+
+function FoodCategoriesView()
+{
+    this.initialise=function()
     {
         this.renderFoodCategories();
-    },
-    renderFoodCategories:function()
-    {   
+    };
+    this.renderFoodCategories=function()
+    {
         const foodCategories=controller.getFoodCategories();
-        foodCategories.map(function(foodCategory)
+        foodCategories.forEach(function(foodCategory)
         {   
             const list=document.createElement("li");
             list.innerHTML=foodCategory;
             document.getElementById("foodList").appendChild(list);
         });
-    }
-};
+    };
+}
+const foodCategoriesView=new FoodCategoriesView();
 
-const foodMenuView=
-{
-    initialise:function()
+
+function FoodMenuView()
+{  
+    this.initialise=function()
     {
         this.renderFoodMenu();
-    },
-    renderFoodMenu:function()
+    };
+    this.renderFoodMenu=function()
     {   
         const foodItems=controller.getFoodItems();
-        foodItems.map(function(foodItem,index)
+        foodItems.forEach(function(foodItem,index)
         {   
             const foodContainer=document.createElement("div");
             foodContainer.className="food";
-    
-            const foodNamePriceContainer=document.createElement("div");
-            foodNamePriceContainer.className="foodNamePrice";
-            const foodTypeImage=document.createElement("img");
-            foodTypeImage.className="foodType";
-            foodTypeImage.src=foodItem.foodType;
-            foodNamePriceContainer.appendChild(foodTypeImage);
-            const foodNamePara=document.createElement("p");
-            foodNamePara.innerText=foodItem.name;
-            foodNamePriceContainer.appendChild(foodNamePara);
-            const foodPricePara=document.createElement("p");
-            foodPricePara.innerText=foodItem.price;
-            foodNamePriceContainer.appendChild(foodPricePara);
-            foodContainer.appendChild(foodNamePriceContainer);
-
-            const addFoodContainer=document.createElement("div");
-            addFoodContainer.className="addFood";
-            const foodImagecontainer=document.createElement("img");
-            foodImagecontainer.className="foodImage";
-            foodImagecontainer.src=foodItem.foodImage;
-            addFoodContainer.appendChild(foodImagecontainer);
-            const addButtoncontainer=document.createElement("button");
-            addButtoncontainer.className="addButton";
-            addButtoncontainer.innerText="Add";
-            addButtoncontainer.onclick=function ()
+            
+            const foodNamePriceSection=function()
             {
-                controller.addToCart(index);
+                const foodNamePriceContainer=document.createElement("div");
+                foodNamePriceContainer.className="foodNamePrice";
+                const foodTypeImage=document.createElement("img");
+                foodTypeImage.className="foodType";
+                foodTypeImage.src=foodItem.foodType;
+                foodNamePriceContainer.appendChild(foodTypeImage);
+                const foodNameParagraph=document.createElement("p");
+                foodNameParagraph.innerText=foodItem.name;
+                foodNamePriceContainer.appendChild(foodNameParagraph);
+                const foodPriceParagraph=document.createElement("p");
+                foodPriceParagraph.innerText=foodItem.price;
+                foodNamePriceContainer.appendChild(foodPriceParagraph);
+                foodContainer.appendChild(foodNamePriceContainer);
             }
-            addFoodContainer.appendChild(addButtoncontainer);
-            foodContainer.appendChild(addFoodContainer);
+            foodNamePriceSection();
+            
+            const addFoodSection=function()
+            {
+                const addFoodContainer=document.createElement("div");
+                addFoodContainer.className="addFood";
+                const foodImageContainer=document.createElement("img");
+                foodImageContainer.className="foodImage";
+                foodImageContainer.src=foodItem.foodImage;
+                addFoodContainer.appendChild(foodImageContainer);
+                const addButtonContainer=document.createElement("button");
+                addButtonContainer.className="addButton";
+                addButtonContainer.innerText="Add";
+                addButtonContainer.onclick=function ()
+                {
+                    controller.addToCart(index);
+                }
+                addFoodContainer.appendChild(addButtonContainer);
+                foodContainer.appendChild(addFoodContainer);
+            }
+            addFoodSection();
             document.getElementById("foodItems").appendChild(foodContainer);
         });
     }
+}
+const foodMenuView= new FoodMenuView();
 
-};
 
-const cartView=
+function CartView()
 {
-    renderCart:function(cart,subTotal)
-    {   
+    this.renderCart=function(cart,subTotal)
+    {
         const cartItemsContainer=document.getElementById("cartItems");
         cartItemsContainer.innerHTML="";
-        cart.map(function(Item)
+        cart.map(function(cartItem)
         {  
             const cartItemContainer=document.createElement("div");
             cartItemContainer.className="cartItem";
-            const cartItemNameContainer=document.createElement("div");
-            cartItemNameContainer.className="cartItemName";
-            const itemNamePara=document.createElement("p");
-            itemNamePara.innerText=`${Item.name}`;
-            cartItemNameContainer.appendChild(itemNamePara);
-            cartItemContainer.appendChild(cartItemNameContainer);
-
-            const cartItemPriceContainer=document.createElement("div");
-            cartItemPriceContainer.className="cartItemPrice";
-            const itemPricePara=document.createElement("p");
-            itemPricePara.innerText=`${Item.qty} x ${Item.price} = ₹${Item.price*Item.qty}`;
-            cartItemPriceContainer.appendChild(itemPricePara);
-            cartItemContainer.appendChild(cartItemPriceContainer);
+            const cartFoodName=function()
+            {
+                const cartItemNameContainer=document.createElement("div");
+                cartItemNameContainer.className="cartItemName";
+                const cartItemNameParagraph=document.createElement("p");
+                cartItemNameParagraph.innerText=`${cartItem.name}`;
+                cartItemNameContainer.appendChild(cartItemNameParagraph);
+                cartItemContainer.appendChild(cartItemNameContainer); 
+            }
+            cartFoodName();
+            const cartButtonContainer=document.createElement("div");
+            cartButtonContainer.className="cartButton";
+            const addFoodButtonInCart=function()
+            {    
+                const cartAddButtonContainer=document.createElement("button");
+                cartAddButtonContainer.className="cartAddButton";
+                cartAddButtonContainer.innerText="+";
+                cartAddButtonContainer.onclick=function ()
+                {
+                    controller.addToCart(cartItem.index);
+                }
+                cartButtonContainer.appendChild(cartAddButtonContainer);
+                     
+            }
+            addFoodButtonInCart();
+            const removeFoodButtonInCart=function()
+            {
+                const cartDeleteButtonContainer=document.createElement("button");
+                cartDeleteButtonContainer.className="cartDeleteButton";
+                cartDeleteButtonContainer.innerText="-";
+                cartDeleteButtonContainer.onclick=function ()
+                {
+                    controller.removeFromCart(cartItem.index);
+                }
+                cartButtonContainer.appendChild(cartDeleteButtonContainer);  
+            }
+            removeFoodButtonInCart();
+            cartItemContainer.appendChild(cartButtonContainer);
+            const cartFoodPrice=function()
+            {
+                const cartItemPriceContainer=document.createElement("div");
+                cartItemPriceContainer.className="cartItemPrice";
+                const cartItemPriceParagraph=document.createElement("p");
+                cartItemPriceParagraph.innerText=`${cartItem.qty} x ${cartItem.price} = ₹${cartItem.price*cartItem.qty}`;
+                cartItemPriceContainer.appendChild(cartItemPriceParagraph);
+                cartItemContainer.appendChild(cartItemPriceContainer);
+            }
+            cartFoodPrice();
             cartItemsContainer.appendChild(cartItemContainer);
+           
         });
         const subTotalContainer=document.getElementById("subTotal");
         subTotalContainer.innerText=`₹${subTotal}`;
     }
 }
+const cartView=new CartView();
 
-const controller=
-{   
-    initialise:function()
+
+function Controller()
+{
+    this.initialise=function()
     {   
-        this.setFoodCategories();
-        this.setFoodItems();
         foodCategoriesView.initialise();
         foodMenuView.initialise();
-    },
-    setFoodCategories:function()
-    {
-        model.foodCategories.push("Recommended");
-        model.foodCategories.push("Samosas");
-        model.foodCategories.push("Bun Clubs");
-        model.foodCategories.push("Baked Samosas");
-        model.foodCategories.push("Bombay Pav Bhaji");
-        model.foodCategories.push("Health Chole Chats");
-        model.foodCategories.push("Bombay Vada Pav")
-        model.foodCategories.push("Chicken Grill Seekhs")
-        model.foodCategories.push("Desserts");
-        model.foodCategories.push("Teas");
-    },
-    setFoodItems:function()
-    {   
-        function Menu(foodType,name,price,foodImage)
-        {
-            this.foodType=foodType;
-            this.name=name;
-            this.price=price;
-            this.foodImage=foodImage;
-        }
-        const foodItem1=new Menu("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg");
-        const foodItem2=new Menu("images/nonveg.png","Special Aloo Samosa",55,"images/samosa2.webp");
-        const foodItem3=new Menu("images/nonveg.png","Chicken Bun Samosa",50,"images/samosa2.webp");
-        const foodItem4=new Menu("images/veg.svg.png","Punjabi Aloo Samosa",20,"images/samosa1.jpeg");
-        model.foodItems.push(foodItem1);
-        model.foodItems.push(foodItem2);
-        model.foodItems.push(foodItem3);
-        model.foodItems.push(foodItem4);
-    },
-    getFoodCategories:function()
+        model.appendCartFromLocalStorage();
+    }, 
+    this.getFoodCategories=function()
     {
         return model.foodCategories;
     },
-    getFoodItems:function()
+    this.getFoodItems=function()
     {
         return model.foodItems;
     },
-    addToCart:function(index)
-    {   
-        document.getElementById("cartImage").style.display="none";
-        let isAddedToCart=false;
-        model.cart.forEach(function(cartItem)
-        {
-            if(cartItem.name===model.foodItems[index].name)
-            {
-            cartItem.qty+=1;
-            isAddedToCart=true;
-            }
-        });
-        if(isAddedToCart===false)
-        {    
-
-            function AddNewCartItem(name,qty,price)
-            {
-                this.name=name;
-                this.qty=qty;
-                this.price=price;
-            }
-            let newCartItem=new AddNewCartItem(model.foodItems[index].name,1,model.foodItems[index].price);
-            model.cart.push(newCartItem);
-        }
-        let subTotal=model.cart.reduce(function(currentSubTotal,cartItem)
-        {
-            return (currentSubTotal+(cartItem.qty*cartItem.price));
-        },0);
-        cartView.renderCart(model.cart,subTotal);
+    this.displayCartItems=function(cart,subTotal)
+    {
+        cartView.renderCart(cart,subTotal);
     }
-};
+    this.addToCart=function(index)
+    {
+        model.addFoodItemsToCart(index);
+    }
+    this.removeFromCart=function(index)
+    {
+        model.removeFoodItemsFromCart(index);
+    }
+   
+}
+const controller=new Controller();
 controller.initialise();
+
+
 
 
 
