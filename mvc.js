@@ -203,7 +203,6 @@ function CartView()
                     controller.addToCart(cartItem.index);
                 }
                 cartButtonContainer.appendChild(cartAddButtonContainer);
-                     
             }
             addFoodButtonInCart();
             const removeFoodButtonInCart=function()

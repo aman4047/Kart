@@ -1,6 +1,10 @@
 html
 {
-   font-size:15px;
+   font-size:10px;
+}
+body
+{
+    font-size: 15px;
 }
 .sectionStyle 
 {
@@ -16,7 +20,7 @@ html
 }
 .swiggyLogo
 {
-    width:5.3rem
+    width:9.95rem
 }
 .header li a
 {
@@ -31,7 +35,7 @@ html
 {
     flex:2;
     position: relative;
-    left: -2rem;
+    left: -3rem;
 }
 .setLocation li
 {
@@ -42,74 +46,78 @@ html
 {
     display:inline-block;
     list-style:none;
-    margin: 0 1.4rem;
+    margin: 0 2.1rem;
     font-family: ProximaNova,arial,Helvetica Neue,sans-serif;
+
 }
 .location 
 {
     background-color:rgba(243, 243, 243, 0.89);
     color:rgb(39, 35, 35);
-    height:2rem;
-    font-size:0.6rem;
-    padding-top:0.13rem;
+    height:3rem;
+    font-size:0.9rem;
+    padding-top:0.195rem;
 }
 .resturant 
 {
     background-color:rgb(21, 21, 44);
-    height:13.3rem;
+    height:19.95rem;
     display:flex;
     justify-content:space-between;
 }
+.resturantLogoContainer
+{
+    margin-top:1.5rem;
+}
 .resturantLogo
 {
-    margin-top:1rem;
+    width:20rem;
+    height:15rem
 }
 .resturantName
 {
     color:white;
-    margin-left:3rem;
-    line-height:0.33rem;
-    padding-top:2rem;
-    flex:2;
+    margin-left:4.5rem;
+    line-height:0.49rem;
+    padding-top:3rem;
+    flex:3;
 }
 .resturantName h2
 {   
     font-family:'Lato', sans-serif;
-  
 }
 .resturantName h5
 {
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 .resturantName h6
 {  
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
     margin-block-start:0;
-   
 }
 .offerContainer 
 {
-    border:0.1rem rgb(182, 180, 180) solid;
+    border:0.15rem rgb(182, 180, 180) solid;
     color: white;
-    margin-top:3rem;
-    margin-bottom:1.2rem;
+    margin-top:4.5rem;
+    margin-bottom:1.8rem;
 }
 .offerContainer h2
 {   
     font-family:'Lato', sans-serif;
-    margin-right:10rem;
+    margin-right:15rem;
     position: relative;
-    top:-2.2rem;
-    left:-0.7rem;
+    top:-3.3rem;
+    left:-1.05rem;
     background-color:rgb(21, 21, 44);
     font-weight:1;
 }
 .offerContainer h4
 {
-    padding-left:1rem;
+    padding-left:1.5rem;
 }
 .foodSection
 {
@@ -119,18 +127,18 @@ html
 .foodCategory
 {  
     text-align:right;
-    border-right:0.1rem rgb(231, 225, 225) solid;
-    margin-top:2rem;
-    padding-right:2rem;
+    border-right:0.15rem rgb(231, 225, 225) solid;
+    margin-top:3rem;
+    padding-right:3rem;
 }
 .foodCategory li
 {   
     list-style:none;
-    height:2rem;
+    height:3rem;
 }
 .foodMenu
 {   
-    padding: 0 3.6rem;
+    padding: 0 5.4rem;
     flex:2;
 }
 .filterContainer
@@ -138,35 +146,35 @@ html
     display:flex;
     justify-content:space-between;
     position: relative;
-    top: -1rem;;
+    top: -1.5rem;;
 
 }
 .filtersStyle
 {
     background-color:white; 
-    border: 0.13rem rgb(247, 244, 244) solid;
-    padding: 0.2rem 0.53rem;
+    border: 0.19rem rgb(247, 244, 244) solid;
+    padding: 0.3rem 0.79rem;
 }
 .selectedCategory 
 {
-    line-height:0.6rem;
-    margin-bottom:2.6rem;
+    line-height:0.9rem;
+    margin-bottom:3.9rem;
 }
 .selectedCategory p
 {
-    font-size:1rem;
+    font-size:1.5rem;
 }
 .food
 {
     display: flex;
     justify-content:space-between;
-    padding-bottom:1.3rem;
-    margin-bottom:5.3rem;
-    border-bottom:0.1rem rgb(231, 225, 225) solid;
+    padding-bottom:1.95rem;
+    margin-bottom:7.95rem;
+    border-bottom:0.15rem rgb(231, 225, 225) solid;
 }
 .foodType
 {
-    width:1.3rem;
+    width:1.95rem;
 }
 .addFood
 {
@@ -176,47 +184,48 @@ html
 }
 .foodImage
 {   
-    border-radius:0.6rem;
-    width:6rem;
+    border-radius:0.9rem;
+    width:9rem;
 }
 .addButton
 {
     color: green;
     background-color: white;
-    border:0.05rem grey solid;
+    border:0.075rem grey solid;
     position:relative;
-    top:-0.7rem;
-    width:4rem;
+    top:-1.05rem;
+    width:6rem;
     
 }
 .cart
 {   
-    padding-top:1.3rem;
-    margin-left:6rem;
+    padding-top:1.95rem;
+    margin-left:9rem;
 }
 .cartHeading
 {
-   padding-left:1rem;
+    padding-left:1.5rem;
+    font-family: ProximaNova,arial,Helvetica Neue,sans-serif;
 }
 .cartItem
 {
     display:flex;
-    padding-bottom:1.3rem;
-    margin-bottom:1.3rem;
-    border-bottom:0.1rem rgb(231, 225, 225) solid;
+    padding-bottom:1.95rem;
+    margin-bottom:1.95rem;
+    border-bottom:0.15rem rgb(231, 225, 225) solid;
 }
 .cartItemName
 {
-    padding: 0rem 1rem;
+    padding: 0rem 1.5rem;
 }
 .cartButton
 {
-    padding-top:1rem;
+    padding-top:1.5rem;
 }
 .cartItemPrice
 {
-    padding-right:1rem;
-    padding-left: 1rem;
+    padding-right:1.5rem;
+    padding-left: 1.5rem;
 }
 .subTotalSection
 {
@@ -225,21 +234,21 @@ html
 }
 .subTotalHeading
 {
-    padding-left:1rem;
+    padding-left:1.5rem;
 }
 .subTotalPrice
 {
-    padding-right:1rem;
+    padding-right:1.5rem;
 }
 .defaultCartImageContainer
 {
-    padding-right:2rem;
+    padding-right:3rem;
 }
 .defaultCartImage
 {
-    width:200px
+    width:20rem
 }
 .defaultCartImageContainer p
 {
-    padding-left:1rem;
+    padding-left:1.5rem;
 }
