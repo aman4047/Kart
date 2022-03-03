@@ -1,7 +1,8 @@
 "use strict"
 function Model()
 {   
-    function setFetchedLocalStorageData(localStorageData)
+    let cart=[];
+    function setFetchedLocalStorageDataToCart(localStorageData)
     {    
         cart=localStorageData.cartItem;
         const subTotal=localStorageData.subTotal;
@@ -30,14 +31,12 @@ function Model()
         window.localStorage.setItem('subTotal', JSON.stringify(subTotal));
         controller.displayCartItems(cart,subTotal);
     };
-    let cart=[];
     function appendCart(CartItem)
     {
         cart.push(CartItem);
     };
     this.initialise=function()
     {   
-        const setFetchedLocalStorageDataToCart=setFetchedLocalStorageData.bind(this);
         fetchDatafromLocalStorage().then(setFetchedLocalStorageDataToCart);
         this.createFoodItems();
     };
