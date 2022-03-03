@@ -139,6 +139,7 @@ function FoodCategoriesView()
     function createFoodCategoryContainer(foodCategory)
     {
         const list=document.createElement("li");
+        list.className="foodCategoryItems";
         list.innerHTML=foodCategory;
         document.getElementById("foodList").appendChild(list);
     }
