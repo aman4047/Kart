@@ -74,7 +74,7 @@ body
     width:20rem;
     height:15rem
 }
-.resturantName
+.resturantInformation
 {
     color:white;
     margin-left:4.5rem;
@@ -82,17 +82,17 @@ body
     padding-top:3rem;
     flex:3;
 }
-.resturantName h2
+.resturantName 
 {   
     font-family:'Lato', sans-serif;
 }
-.resturantName h5
+.resturantFoodType
 {
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
     margin-bottom: 1.5rem;
 }
-.resturantName h6
+.resturantLocation
 {  
     color:rgb(185, 179, 179);
     font-family:'Lato', sans-serif;
@@ -105,7 +105,7 @@ body
     margin-top:4.5rem;
     margin-bottom:1.8rem;
 }
-.offerContainer h2
+.offerHeading
 {   
     font-family:'Lato', sans-serif;
     margin-right:15rem;
@@ -115,7 +115,7 @@ body
     background-color:rgb(21, 21, 44);
     font-weight:1;
 }
-.offerContainer h4
+.offer
 {
     padding-left:1.5rem;
 }
@@ -149,7 +149,7 @@ body
     top: -1.5rem;;
 
 }
-.filtersStyle
+.filter
 {
     background-color:white; 
     border: 0.19rem rgb(247, 244, 244) solid;
@@ -159,10 +159,6 @@ body
 {
     line-height:0.9rem;
     margin-bottom:3.9rem;
-}
-.selectedCategory p
-{
-    font-size:1.5rem;
 }
 .food
 {
@@ -248,7 +244,7 @@ body
 {
     width:20rem
 }
-.defaultCartImageContainer p
+.defaultCartImageText
 {
-    padding-left:1.5rem;
+    padding-left:1.6rem;
 }
