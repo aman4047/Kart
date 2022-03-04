@@ -292,8 +292,6 @@ function CartView()
     }
 }
 
-
-
 function Controller(model,view)
 {   
     this.initialise=function()
