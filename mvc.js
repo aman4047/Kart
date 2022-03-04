@@ -182,7 +182,7 @@ function FoodMenuView()
         foodImageContainer.src=foodItem.foodImage;
         addFoodContainer.appendChild(foodImageContainer);
     }
-    function createAddButtonContainer(addFoodContainer,foodItem,index)
+    function createAddButtonContainer(addFoodContainer,index)
     {
         const addButtonContainer=document.createElement("button");
         addButtonContainer.className="addButton";
@@ -210,7 +210,7 @@ function FoodMenuView()
             const addFoodContainer=document.createElement("div");
             addFoodContainer.className="addFood";
             createFoodImagecontainer(addFoodContainer,foodItem);
-            createAddButtonContainer(addFoodContainer,foodItem,index);
+            createAddButtonContainer(addFoodContainer,index);
             foodContainer.appendChild(addFoodContainer);
             document.getElementById("foodItems").appendChild(foodContainer);
         });
